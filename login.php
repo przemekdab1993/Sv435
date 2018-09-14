@@ -28,7 +28,7 @@
 		mysqli_report(MYSQLI_REPORT_STRICT);
 		try
 		{
-			$connect = @new mysqli($host, $db_user, $db_password, $db_name);
+			$connect = new mysqli($host, $db_user, $db_password, $db_name);
 			if($connect->connect_errno != 0)
 			{
 				throw new Exception(mysqli_connect_errno());
@@ -46,23 +46,32 @@
 						$res_row = $res->fetch_assoc();
 						$password_res = $res_row['password'];
 						
-						if(password_verify($user_password, $password_res) == true)
+						if($user_password == $password_res)
 						{
-							$_SESSION['loged'] = True;
-							$_SESSION['user_name'] = $res_row['user_name'];
-							unset($_SESSION['error_l']);
-							
-							header('Location: index.php');
+							$status = $res_row['status'];
+							if($status == 'active')
+							{
+								$_SESSION['loged'] = True;
+								$_SESSION['user_name'] = $res_row['user_name'];
+								unset($_SESSION['error_l']);
+								
+								header('Location: index.php');
+							}
+							else
+							{
+								$_SESSION['error_l'] = "To konto nie zostało jeszcze aktywowane.<br />";
+								header('Location: index.php');
+							}	
 						}
 						else
 						{
-							$_SESSION['error_l'] =  "Niepoprawne login lub hasło<br />";
+							$_SESSION['error_l'] = "Niepoprawne login lub hasło<br />";
 							header('Location: index.php');
 						}
 					}
 					else
 					{
-						$_SESSION['error_l'] =  "Niepoprawne login lub hasło<br />";
+						$_SESSION['error_l'] = "Niepoprawne login lub hasło<br />";
 						header('Location: index.php');
 					}
 				}

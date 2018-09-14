@@ -12,11 +12,9 @@
 		require "connect.php";
 		require_once "PHPMailer/PHPMailerAutoload.php";
 		
-		$activation_key = md5(rand().time()); // Generowanie 32-bajtowego klucza aktywacyjnego 
-		
 		// Zawartość wysyłanej wiadomości 
-		$body = 'Aby aktywować nowo utworzone konto nalerzy kliknąć koniższy link.<br /><a href="';
-		$body .= '<a href="'.$link_f.'/'.$ws_name.'/active_user.php" target="_blank">link</a>';
+		$body = 'Aby aktywować nowo utworzone konto nalerzy kliknąć koniższy link.<br />';
+		$body .= '<a href="' . $link_f . '/' . $ws_name . '/active_user.php?user=' . $user_name . '&key=' . $key . '" target="_blank">link</a>';
 		
 		$mail = new PHPMailer;
 		# $mail->isSMTP();
@@ -33,8 +31,8 @@
 		$mail->addAddress($user_email);
 		$mail->addReplyTo("iniesta.regist@gmail.com");
 		
+		$mail->CharSet = 'UTF-8';
 		$mail->isHTML(true);
-		$mail->CharSet = "UTF-8";
 		$mail->Subject = "Witam nowy użytkowniku";
 		$mail->Body = $body;
 		
@@ -80,7 +78,7 @@
 	}
 	else
 	{
-		if(ctype_alnum($user_name) == false)
+		if(ctype_alnum($password_1) == false)
 		{
 			$flag_vali = false;
 			$_SESSION['e_password_1'] = "Hasło może składać się tylko ze liter i liczb( bez znaków narodowych)";
@@ -91,7 +89,6 @@
 		$flag_vali = false;
 		$_SESSION['e_password_2'] = "Hasło wpisane w dwóch polach powinno być identyczne";
 	}
-	$password_hash = password_hash($password_1, PASSWORD_DEFAULT);	//hashowanie hasła
 	
 	// Walidacja email
 	if(strlen($email) < 6 || strlen($password_1) > 64)
@@ -116,7 +113,7 @@
 	try
 	{
 		// ŁĄCZENIE Z BAZĄ DANYCH //
-		$connect = @new mysqli($host, $db_user, $db_password, $db_name);
+		$connect = new mysqli($host, $db_user, $db_password, $db_name);
 		
 		if($connect->connect_errno != 0)
 		{
@@ -161,7 +158,8 @@
 			// TWORZENIE NOWEGO UZYTKOWNIKA GDY WALIDACJA PRZEBIEGNIE POMYŚLNIE //
 			if($flag_vali == true)
 			{
-				$activation_key = md5(rand().time()); # Generowanie 32-bajtowego klucza aktywacyjnego 
+				$password_hash = password_hash($password_1, PASSWORD_DEFAULT);	//hashowanie hasła
+				$activation_key = md5(rand().time()); // Generowanie 32-bajtowego klucza aktywacyjnego 
 				
 				$_SQL3 = "INSERT INTO user (user_name, password, email, activation_key) VALUES ('%s', '%s', '%s', '%s')";
 				
