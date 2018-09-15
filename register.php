@@ -14,8 +14,6 @@
 
 <head>
   <meta charset="utf-8" />
-  <meta name="descripcion" content="" />
-  <meta name="keywords" content="" />
   <meta http-equiv="X-UA-Compatiable" content="IE=edge,chrome=1" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
@@ -23,7 +21,7 @@
   
   <script type="text/javascript" src="script/jquery-3.3.1.min.js"></script>
 
-  <title></title>
+  <title>Rejestracja</title>
 </head>
 
 <body>
@@ -63,7 +61,7 @@
 	<footer>
 		Przemysław Dąbrowski &copy; 2018 v 1.0
 	</footer>
-	<script type="text/javascript" src="script/function.js"></script>
+	<script type="text/javascript" src="script/function_register.js"></script>
 </body>
 
 </html>

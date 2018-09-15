@@ -46,7 +46,7 @@
 						$res_row = $res->fetch_assoc();
 						$password_res = $res_row['password'];
 						
-						if($user_password == $password_res)
+						if(password_verify($user_password, $password_res))
 						{
 							$status = $res_row['status'];
 							if($status == 'active')
@@ -65,13 +65,13 @@
 						}
 						else
 						{
-							$_SESSION['error_l'] = "Niepoprawne login lub hasło<br />";
+							$_SESSION['error_l'] = "Nieprawidłowy login lub hasło<br />";
 							header('Location: index.php');
 						}
 					}
 					else
 					{
-						$_SESSION['error_l'] = "Niepoprawne login lub hasło<br />";
+						$_SESSION['error_l'] = "nieprawidłowy login lub hasło<br />";
 						header('Location: index.php');
 					}
 				}

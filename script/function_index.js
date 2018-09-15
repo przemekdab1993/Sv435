@@ -1,6 +1,6 @@
 function show_login()
 {
-	$('.backgrand_alert').show();
+	$('.black_back').show();
 }
 
 $(function(){
