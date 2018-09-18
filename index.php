@@ -12,6 +12,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <link rel="stylesheet" href="style/style.css" type="text/css" />
+  <link href="https://fonts.googleapis.com/css?family=Mouse+Memoirs|Open+Sans|Oxygen|Sriracha" rel="stylesheet">
   
   <script type="text/javascript" src="script/jquery-3.3.1.min.js"></script>
 
@@ -35,8 +36,8 @@
 				{
 					// Jeśli użytkownik nie jest zalogowany 
 					// ustawia zawartość top_bar
-					echo " Jesteś niezalogowany ";
-					echo '<button id="log_set">Zaloguj</button>';
+					echo " Jesteś nie zalogowany ";
+					echo '<button id="log_set">Zaloguj się</button>';
 				}
 			?>
 		</div>
@@ -47,24 +48,24 @@
 					{
 						// Jeśli użytkownik jest zalogowany 
 						// ustawia zawartość top_bar
-						echo '<h2>Witaj '.$_SESSION['user_name'].'</h2>';
+						echo '<div class="title_1">Witaj '.$_SESSION['user_name'].'</div>';
 						echo '<p>Nic tej stronie nie brakuje. Może jedynie twórcy tej strony przydało by się troszkę doświadczenia w komercyjnym tworzeniu stron internetowych. Bardzo się stara się by ktoś uwierzył w niego, tak jak on sam wierzy że w przysłości będzie bardzo dobrym  WebMaster.</p>';
-						echo '<i>Wszystko, czego się dotąd nauczyłeś, zatraci sens, jeśli nie potrafisz znaleźć zastosowania dla tej wiedzy.<br />- Paulo Coelho</i><br /><br />';
-					 	echo '<i>Wszystka wiedza pochodzi z doświadczenia. Doświadczenie jest produktem rozumu.<br />-Immanuel Kant</i>';
+						echo '<div class="quote">Wszystko, czego się dotąd nauczyłeś, zatraci sens, jeśli nie potrafisz znaleźć zastosowania dla tej wiedzy.<br /><span class="quote_span">Paulo Coelho</span></div>';
+					 	echo '<div class="quote">Wszystka wiedza pochodzi z doświadczenia. Doświadczenie jest produktem rozumu.<br /><span class="quote_span">Immanuel Kant</span></div>';
 					}
 					else
 					{
 						// Jeśli użytkownik nie jest zalogowany 
 						// ustawia zawartość top_bar
-						echo '<h2>Witaj</h2>';
-						echo '<p>Jeśli chcesz zobaczyć zawartość strony proszę cię abyś się zalogował.';
+						echo '<div class="title_1">Witaj</div>';
+						echo '<p>Jeśli chcesz zobaczyć zawartość strony proszę o zalogowanie się.';
 					}
 				?>
 			</section>
 		</div>
 	</main>
 	<footer>
-		<a href="https://przemekdab1993.github.io/Portfolio/" class="link_black">Przemysław Dąbrowski</a> &copy; 2018 v1.2
+		<a href="https://przemekdab1993.github.io/Portfolio/" class="link_black">Przemysław Dąbrowski</a> &copy; 2018 v1.3
 	</footer>
 	
 	<div class="black_back">
@@ -75,7 +76,7 @@
 			<div class="form_title">Logowanie</div>
 			<form id="form_1" action="login.php" method="POST">
 				<label for="user_name">Nazwa użytkownika:</label>
-				<input type="text" name="user_name" /><br />
+				<input type="text" name="user_name" value="<?php if (isset($_SESSION['re_login_user_name'])) echo $_SESSION['re_login_user_name']; ?>"/><br />
 				<label for="password">Hasło:</label>
 				<input type="password" name="password" /><br />
 				<span class="red_error">
@@ -98,6 +99,7 @@
 		{
 			echo '<script>$(function(){show_login();});</script>';
 			unset($_SESSION['error_l']);
+			unset($_SESSION['re_login_user_name']);
 		}
 	?>
 

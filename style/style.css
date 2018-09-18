@@ -1,16 +1,20 @@
+/* Style CSS  dla index.php oraz register.php */
+
 body
 {
 	margin: 0px;
 	padding: 0px;
 	font-size: 18px;
-	background: linear-gradient(to bottom left, #f7f5ff 0%, #99ddff 100%);
+	background: linear-gradient(to bottom left, #e9f2fb 0%, #bcd7f5 100%);
 	min-height: 100vh;
+	font-family: 'Open Sans', sans-serif;
 }
 footer
 {
 	text-align: center;
 	letter-spacing: 1px;
 	word-spacing: 10px;
+	margin-bottom: 20px;
 }
 a
 {
@@ -33,26 +37,73 @@ a.link_black:hover
 .top_bar
 {
 	text-align: right;
-	padding: 3px;
+	padding: 6px 10px 0px 0px;
+	font-size: 16px;
 }
 #log_set
 {
+	font-family: 'Oxygen', sans-serif;
 	outline: none;
-	padding: 6px 3px;
-	border: 1px solid #d9d9d9;
+	padding: 6px 10px;
+	border: 1px solid #c4c4c4;
+	border-radius: 6px;
+	background: linear-gradient(to bottom, #ffffff 0%, #f2f2f2 50%, #f2f2f2 51%, #ffffff 100%);
+	color: #8c8c8c;
+	box-shadow: 0px 0px 10px #acbfd2;
+}
+#log_set:hover
+{
 	background: linear-gradient(to bottom, #ffffff 0%, #d9d9d9 50%, #d9d9d9 51%, #ffffff 100%);
-	color: #595959;
+	text-shadow: 0px 0px 3px #ffffff, 0px 0px 3px #ffffff;
+	color: #333333;
 }
 .main_container
 {
-	background-color: #f8f8f8;
-	border: 6px solid #9494b8;
-	border-radius: 20px;
-	width: 900px;
-	padding: 30px;
-	height: 400px;
+	/* Background pattern from Toptal Subtle Patterns */
+	background-image: url("../img/dust.png");
+	border-radius: 0px;
+	width: 700px;
+	padding: 50px 100px;
+	min-height: 400px;
 	margin: 50px auto;
 	position: relative;
+	box-shadow: 0px 0px 10px #7a99b8, 0px 0px 30px #acbfd2;
+}
+.quote
+{
+	font-family: 'Sriracha', cursive;
+	width: 450px;
+	margin: 10px auto 10px 0px; 
+	padding: 25px;
+	border-radius: 10px;
+	font-style: italic;
+	color: #545454;
+	background-color: rgba(255, 255, 255, 0.5);
+}
+.quote_span
+{
+	display: block;
+	text-align: right;
+	padding-right: 30px;
+}
+.title_1
+{
+	font-family: 'Mouse Memoirs', sans-serif;
+	letter-spacing: 3px;
+	word-spacing: 8px;
+	text-align: center;
+	text-shadow: 0px 0px 3px #000099, 2px 1px 2px #000099;
+	font-size: 52px;
+	color: #ffd11a;
+}
+.form_title
+{
+	font-family: 'Mouse Memoirs', sans-serif;
+	letter-spacing: 5px;
+	margin-bottom: 12px;
+	font-weight: 500;
+	font-size: 48px;
+	color: #000;
 }
 
 /* ---FORMULARZ LOGOWANIA SIĘ--- */
@@ -81,17 +132,9 @@ a.link_black:hover
 	top: 14px;
 	cursor: pointer;
 }
-.form_title
-{
-	font-weight: 900;
-	font-size: 36px;
-	margin-bottom: 40px;
-	color: #000;
-}
 #form_1 label
 {
 	width: 170px;
-	text-align: center;
 	display: inline-block;
 }
 #form_1 input[type=text], input[type=password]
@@ -101,10 +144,16 @@ a.link_black:hover
 	margin-bottom: 4px;
 	border-radius: 6px;
 	outline: none;
-	border: 2px solid #999999;
+	border: 1px solid #999999;
+}
+#form_1 input[type=text]:focus, #form_1 input[type=password]:focus
+{
+	background-color: #ffffb3;
+	border-color: #444444;
 }
 #form_1 input[type=submit]
 {
+	font-family: 'Oxygen', sans-serif;
 	padding: 8px 20px;
 	border-radius: 6px;
 	border: 2px solid #9898cd;
@@ -147,11 +196,17 @@ a.link_black:hover
 	margin-bottom: 4px;
 	border-radius: 6px;
 	outline: none;
-	border: 2px solid #999999;
+	border: 1px solid #999999;
 	font-size: 18px;
+}
+#form_2 input[type=text]:focus, #form_2 input[type=password]:focus
+{
+	background-color: #ffffb3;
+	border-color: #444444;
 }
 #form_2 input[type=submit]
 {
+	font-family: 'Oxygen', sans-serif;
 	padding: 14px;
 	border-radius: 6px;
 	border: 2px solid #9898cd;
@@ -193,7 +248,57 @@ a.link_grey:hover
 .alert_container
 {
 	padding: 40px 120px;
-	margin-top: 40vh;
-	background-color: #fff;
+	margin-top: 35vh;
+	background: linear-gradient(to bottom, #d9d9d9 0%, #ffffff 24%, #ffffff 75%, #bfbfbf 100%);
 	text-align: center;
+	font-size: 20px;
+}
+
+/* style obowiązujące jedynie dla okna przeglądarki o rozdziejczości 900px i miejszych */
+@media screen and (max-width: 900px)
+{
+	.main_container
+	{
+		width: 460px;
+		padding: 40px 80px;
+		margin: 40px auto;
+	}
+	.quote
+	{
+		width: 400px;
+	}
+	.alert_container
+	{
+		padding: 40px 80px;
+		margin-top: 30vh;
+		font-size: 18px;
+	}
+}
+/* style obowiązujące jedynie dla okna przeglądarki o rozdziejczości 640px i miejszych */
+@media screen and (max-width: 640px)
+{
+	body
+	{
+		font-size: 16px;
+	}
+	.main_container
+	{
+		width: 420px;
+		padding: 30px 60px;
+		margin: 20px auto;
+	}
+	.title_1
+	{
+		font-size: 46px;
+	}
+	.form_title
+	{
+		font-size: 42px;
+	}
+
+	.alert_container
+	{
+		padding: 30px 60px;
+		margin-top: 25vh;
+	}
 }

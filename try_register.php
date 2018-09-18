@@ -68,6 +68,7 @@
 			$flag_vali = false;
 			$_SESSION['e_user_name'] = "Nazwa użytkownika może składać się tylko ze liter i liczb( bez znaków narodowych)";
 		}
+		$_SESSION['re_user_name'] = $user_name;
 	}
 
 	// Walidacja password_1 i password_2
@@ -81,7 +82,7 @@
 		if(ctype_alnum($password_1) == false)
 		{
 			$flag_vali = false;
-			$_SESSION['e_password_1'] = "Hasło może składać się tylko ze liter i liczb( bez znaków narodowych)";
+			$_SESSION['e_password_1'] = "Hasło może składać się tylko ze liter i liczb (bez znaków narodowych)";
 		}
 	}
 	if($password_1 != $password_2)
@@ -102,6 +103,7 @@
 		$flag_vali = false;
 		$_SESSION['e_email'] = "Niepoprawny adres email";
 	}
+	$_SESSION['re_email'] = $email;
 
 	// walidacja check_reg (akceptacji reglaminu)
 	if(!isset($_POST['check_reg']))
@@ -131,6 +133,7 @@
 				if ($num_user > 0)
 				{
 					$flag_vali = false;
+					unset($_SESSION['re_user_name']);
 					$_SESSION['e_user_name'] = "Istnieje już użytkownik o podanym nazwie";
 				}
 				$res1->close();
@@ -150,14 +153,17 @@
 				{
 					$flag_vali = false;
 					$_SESSION['e_email'] = "Podany email już wykorzystywany przez innego użytkownika.";
+					unset($_SESSION['re_email']);
 					$res2->close();
-				}
+				}	
 			}
-
 
 			// TWORZENIE NOWEGO UZYTKOWNIKA GDY WALIDACJA PRZEBIEGNIE POMYŚLNIE //
 			if($flag_vali == true)
 			{
+				unset($_SESSION['re_user_name']);
+				unset($_SESSION['re_email']);
+				
 				$password_hash = password_hash($password_1, PASSWORD_DEFAULT);	//hashowanie hasła
 				$activation_key = md5(rand().time()); // Generowanie 32-bajtowego klucza aktywacyjnego
 
@@ -171,7 +177,7 @@
 
 				setEmailRegister($email, $activation_key, $user_name);
 
-				$alert = "<h1>Dziękujemy za skorzystanie z naszych usług.</h1>";
+				$alert = "<h2>Dziękujemy za skorzystanie z naszych usług.</h2>";
 				$alert .= "Aby korzystać z nowo utworzonego konta musisz najpierw go aktywować specjalnym linkiem wysłanym na email podany w formularzu rejestracji.";
 
 				$_SESSION['alert'] = $alert;

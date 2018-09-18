@@ -37,15 +37,14 @@
 						throw new Exception(mysqli_connect_errno());
 					}
 					// Wysłanie krótkiego komunikatu za pomocą zmiennej sesyjnej "$_SESSION['alert']"
-					$alert = "<h1>Aktywacja Pomyślna</h1>"; 
+					$alert = "<h2>Aktywacja Pomyślna</h2>"; 
 					$alert .= "Diękujemy że dołączyłeś naszej społecznści. Życzymy udanego korzystania z naszej witryny na twoin nowym koncie.";
 					$_SESSION['alert'] = $alert;
 					header('Location: index.php');
 				}
 				else
-				{
-					$alert = "<h1>Nastąpił Błąd</h1>"; 
-					$alert .= "Ten link aktywacyjny został już wcześniej aktywowany.";
+				{ 
+					$alert = "Ten link aktywacyjny został już wcześniej aktywowany.";
 					$_SESSION['alert'] = $alert;
 					header('Location: index.php');
 				}

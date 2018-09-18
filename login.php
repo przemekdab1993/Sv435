@@ -1,9 +1,11 @@
 <?php
-
+	//Logowanie się na konto użytkownika // 
+	
 	require_once "connect.php";
 	
 	session_start();
 	
+	// Jeżeli strona nie została załadowana za pomocą klikniącia submita w formularzu przenoszenie do strony głównej
 	if(!isset($_POST['user_name']) && !isset($_POST['password']))
 	{
 		header('Location: index.php');
@@ -59,18 +61,21 @@
 							}
 							else
 							{
+								$_SESSION['re_login_user_name'] = $user_name;
 								$_SESSION['error_l'] = "To konto nie zostało jeszcze aktywowane.<br />";
 								header('Location: index.php');
 							}	
 						}
 						else
 						{
+							$_SESSION['re_login_user_name'] = $user_name;
 							$_SESSION['error_l'] = "Nieprawidłowy login lub hasło<br />";
 							header('Location: index.php');
 						}
 					}
 					else
 					{
+						$_SESSION['re_login_user_name'] = $user_name;
 						$_SESSION['error_l'] = "nieprawidłowy login lub hasło<br />";
 						header('Location: index.php');
 					}
