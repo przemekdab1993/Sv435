@@ -50,7 +50,7 @@
 				<span class="red_error">
 					<?php show_text($_SESSION['e_email']); unset($_SESSION['e_email']); ?>
 				</span>
-				<label><input type="checkbox" name="check_reg" />Akceptuje regulamin</label>
+				<label><input type="checkbox" name="check_reg" />Akceptuje regulamin</label><br />
 				<span class="red_error">
 					<?php show_text($_SESSION['e_check_reg']); unset($_SESSION['e_check_reg']); ?>
 				</span>
@@ -60,7 +60,7 @@
 		</div>
 	</main>
 	<footer>
-		Przemysław Dąbrowski &copy; 2018 v 1.3
+		Przemysław Dąbrowski &copy; 2018 v 1.4
 	</footer>
 	<script type="text/javascript" src="script/function_register.js"></script>
 </body>

@@ -13,7 +13,8 @@
 		require_once "PHPMailer/PHPMailerAutoload.php";
 
 		// Zawartość wysyłanej wiadomości
-		$body = 'Aby aktywować nowo utworzone konto nalerzy kliknąć koniższy link.<br />';
+		$body = 'Dziękujemy ze skorzystanie z naszej oferty i że dołączyłeś do grona naszych użytkowników.';
+		$body .= 'Aby aktywować nowo utworzone konto nalerzy kliknąć koniższy link.<br />';
 		$body .= '<a href="' . $link_f . '/' . $ws_name . '/active_user.php?user=' . $user_name . '&key=' . $key . '" target="_blank">link</a>';
 
 		$mail = new PHPMailer;
@@ -66,12 +67,13 @@
 		if(!ctype_alnum($user_name))
 		{
 			$flag_vali = false;
-			$_SESSION['e_user_name'] = "Nazwa użytkownika może składać się tylko ze liter i liczb( bez znaków narodowych)";
+			$_SESSION['e_user_name'] = "Nazwa użytkownika może składać się tylko ze liter i liczb(bez znaków narodowych)";
 		}
 		$_SESSION['re_user_name'] = $user_name;
 	}
 
 	// Walidacja password_1 i password_2
+	
 	if(strlen($password_1) < 6 || strlen($password_1) > 32)
 	{
 		$flag_vali = false;
@@ -84,6 +86,11 @@
 			$flag_vali = false;
 			$_SESSION['e_password_1'] = "Hasło może składać się tylko ze liter i liczb (bez znaków narodowych)";
 		}
+	}
+	if (strlen($password_2) == 0)
+	{
+		$flag_vali = false;
+		$_SESSION['e_password_2'] = "Wypełnij pole";
 	}
 	if($password_1 != $password_2)
 	{
@@ -111,7 +118,7 @@
 		$flag_vali = false;
 		$_SESSION['e_check_reg'] = "Nie zaakceptowałeś regulaminu!";
 	}
-
+	
 	try
 	{
 		// ŁĄCZENIE Z BAZĄ DANYCH //
@@ -133,8 +140,7 @@
 				if ($num_user > 0)
 				{
 					$flag_vali = false;
-					unset($_SESSION['re_user_name']);
-					$_SESSION['e_user_name'] = "Istnieje już użytkownik o podanym nazwie";
+					$_SESSION['e_user_name'] = "Istnieje już użytkownik o podanej nazwie";
 				}
 				$res1->close();
 			}
@@ -152,8 +158,7 @@
 				if ($num_user > 0)
 				{
 					$flag_vali = false;
-					$_SESSION['e_email'] = "Podany email już wykorzystywany przez innego użytkownika.";
-					unset($_SESSION['re_email']);
+					$_SESSION['e_email'] = "Podany email już jest wykorzystywany przez innego użytkownika.";
 					$res2->close();
 				}	
 			}

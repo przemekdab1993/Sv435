@@ -16,7 +16,7 @@
   
   <script type="text/javascript" src="script/jquery-3.3.1.min.js"></script>
 
-  <title>Start</title>
+  <title>home</title>
 </head>
 
 <body>
@@ -29,14 +29,14 @@
 				{	
 					// Jeśli użytkownik jest zalogowany 
 					// ustawia zawartość top_bar
-					echo "Jesteś zalogowany jako: ".$_SESSION['user_name'];
-					echo '<a href="logout.php" >[ wyloguj się ]</a>';
+					echo 'Zalogowany: '.$_SESSION['user_name'];
+					echo ' <a href="logout.php" >[wyloguj się]</a>';
 				}
 				else
 				{
 					// Jeśli użytkownik nie jest zalogowany 
 					// ustawia zawartość top_bar
-					echo " Jesteś nie zalogowany ";
+					echo "Nie jesteś zalogowany  ";
 					echo '<button id="log_set">Zaloguj się</button>';
 				}
 			?>
@@ -65,7 +65,7 @@
 		</div>
 	</main>
 	<footer>
-		<a href="https://przemekdab1993.github.io/Portfolio/" class="link_black">Przemysław Dąbrowski</a> &copy; 2018 v1.3
+		<a href="https://przemekdab1993.github.io/Portfolio/" class="link_black" target="_blank">Przemysław Dąbrowski</a> &copy; 2018 v1.4
 	</footer>
 	
 	<div class="black_back">
@@ -93,7 +93,7 @@
 			Jeśli masz jeszcze konta, kliknij <a href="register.php">rejestracja</a>
 		</div>
 	</div>
-	<script type="text/javascript" src="script/function_index.js"></script>
+	
 	<?php
 		if(isset($_SESSION['error_l']))
 		{
@@ -121,6 +121,7 @@ ECHOEND;
 			unset($_SESSION['alert']);
 		}
 	?>
+	<script type="text/javascript" src="script/function_index.js"></script>
 </body>
 
 </html>
