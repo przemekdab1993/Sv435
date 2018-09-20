@@ -1,5 +1,6 @@
 <?php 
-
+	// WYLOGOWYWANIE UŻYTKOWNIKA //
+	
 	session_start();
 	session_unset();
 	$alert = "<h2>Zostałeś wylogowany</h2>"; 

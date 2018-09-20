@@ -1,5 +1,4 @@
 /* Style CSS  dla index.php oraz register.php */
-
 body
 {
 	margin: 0px;
@@ -62,7 +61,7 @@ a.link_black:hover
 	background-image: url("../img/dust.png");
 	border-radius: 0px;
 	width: 700px;
-	padding: 50px 100px;
+	padding: 70px 100px 50px 100px;
 	min-height: 400px;
 	margin: 40px auto 20px auto;
 	position: relative;

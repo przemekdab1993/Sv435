@@ -1,4 +1,6 @@
 <?php
+	// REJESTRACJA KONTA NOWEGO UŻYTKOWNIKA //
+
 	require "connect.php";
 
 	session_start();
@@ -180,7 +182,11 @@
 										mysqli_real_escape_string($connect, $email),
 										mysqli_real_escape_string($connect, $activation_key)));
 
-				setEmailRegister($email, $activation_key, $user_name);
+				$se = "false";
+				if(setEmailRegister($email, $activation_key, $user_name) != true) 
+				{
+					throw new Exception("Email z linkiem nie wysłany.");
+				}
 
 				$alert = "<h2>Dziękujemy za skorzystanie z naszych usług.</h2>";
 				$alert .= "Aby korzystać z nowo utworzonego konta musisz najpierw go aktywować specjalnym linkiem wysłanym na email podany w formularzu rejestracji.";
@@ -200,7 +206,7 @@
 	{
 		echo "Błąd krytyczny serwera. Prosimy spróbować ponownie puźniej. Przepraszamy.";
 		echo "<br />";
-		echo ">>>".$err;
+		#echo ">>>".$err;
 		exit();
 	}
 ?>

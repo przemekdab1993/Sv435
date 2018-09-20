@@ -65,7 +65,7 @@
 		</div>
 	</main>
 	<footer>
-		<a href="https://przemekdab1993.github.io/Portfolio/" class="link_black" target="_blank">Przemysław Dąbrowski</a> &copy; 2018 v1.4
+		<a href="https://przemekdab1993.github.io/Portfolio/" class="link_black" target="_blank">Przemysław Dąbrowski</a> &copy; 2018 v1.4.1
 	</footer>
 	
 	<div class="black_back">

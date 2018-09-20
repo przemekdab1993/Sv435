@@ -1,6 +1,9 @@
 <?php
 	// AKTYWACJA KONTA NOWEGO UŻYTKOWNIKA //
+	
 	require "connect.php";
+	
+	session_start();
 	
 	// Pobranie danych przesłanych za pomocą metody GET //
 	$user_name = $_GET['user'];
@@ -38,20 +41,20 @@
 					}
 					// Wysłanie krótkiego komunikatu za pomocą zmiennej sesyjnej "$_SESSION['alert']"
 					$alert = "<h2>Aktywacja Pomyślna</h2>"; 
-					$alert .= "Diękujemy że dołączyłeś naszej społecznści. Życzymy udanego korzystania z naszej witryny na twoin nowym koncie.";
+					$alert .= "Dziękujemy że dołączyłeś naszej społecznści. Życzymy udanego korzystania z naszej witryny na twoim nowym koncie.";
 					$_SESSION['alert'] = $alert;
 					header('Location: index.php');
 				}
 				else
 				{ 
-					$alert = "Ten link aktywacyjny został już wcześniej aktywowany.";
+					$alert = "Ten link aktywacyjny został już wcześniej użyty.";
 					$_SESSION['alert'] = $alert;
 					header('Location: index.php');
 				}
 			}
 			else
 			{
-				echo "Strona o podanym adresie nieistnieje";
+				echo "Strona o podanym adresie nie istnieje";
 			}	
 		}
 		else throw new Exception(mysqli_connect_errno());
@@ -63,8 +66,7 @@
 	catch(Exception $error)
 	{
 		echo "Błąd serwera";
-		echo $error;
-		exit();
+		#echo $error;
 	}
 
 ?>
